@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartCity Connect | Secure Login</title>
+  <style>
+    :root {
+      --bg-start: #f3f8ff;
+      --bg-end: #eef2f7;
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --text-main: #10233b;
+      --text-muted: #3e5872;
+      --brand: #0d6efd;
+      --brand-strong: #0a58ca;
+      --accent: #00a6a6;
+      --success: #1c7a43;
+      --warning: #d97706;
+      --danger: #b42318;
+      --focus: #0d6efd;
+      --border: #cfdceb;
+      --shadow: 0 16px 45px rgba(16, 35, 59, 0.12);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text-main);
+      background: linear-gradient(150deg, var(--bg-start), var(--bg-end));
+      line-height: 1.45;
+    }
+
+    .app-shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 1.5rem;
+      padding: clamp(1rem, 2vw, 2.2rem);
+    }
+
+    .panel {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .login-panel {
+      padding: clamp(1.25rem, 2vw, 2.25rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #cde5ff, #8fc4ff);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: #0c2f61;
+      border: 1px solid #b3d6ff;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.5rem, 2.4vw, 2rem);
+      letter-spacing: 0.01em;
+    }
+
+    .subtitle {
+      margin-top: 0.5rem;
+      margin-bottom: 1.25rem;
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    form {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .field {
+      display: grid;
+      gap: 0.42rem;
+    }
+
+    label {
+      font-weight: 700;
+      color: var(--text-main);
+      font-size: 0.95rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.85rem 0.95rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 1rem;
+      color: var(--text-main);
+      background: #fff;
+    }
+
+    input::placeholder { color: #6d8198; }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      padding: 0.88rem 1rem;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 130ms ease, box-shadow 130ms ease, background-color 130ms ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, var(--brand), #1f8bff);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(13, 110, 253, 0.24);
+    }
+
+    .btn-primary:hover { transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--brand-strong);
+      border: 1px solid #b9d5ff;
+    }
+
+    .btn-tertiary {
+      background: #ebf5ff;
+      color: #123a73;
+      border: 1px solid #b7dbff;
+    }
+
+    .button-grid {
+      display: grid;
+      gap: 0.7rem;
+      margin-top: 0.2rem;
+    }
+
+    .microcopy {
+      margin-top: 0.75rem;
+      font-size: 0.93rem;
+      color: var(--text-muted);
+    }
+
+    .status {
+      margin-top: 0.65rem;
+      min-height: 1.4rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .status.success { color: var(--success); }
+    .status.info { color: #115e98; }
+    .status.warn { color: var(--warning); }
+
+    .preview-panel {
+      padding: clamp(1rem, 1.8vw, 1.8rem);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .preview-header h2 {
+      margin: 0;
+      font-size: clamp(1.25rem, 2vw, 1.65rem);
+    }
+
+    .preview-header p {
+      margin: 0.45rem 0 1rem;
+      color: var(--text-muted);
+    }
+
+    .city-map {
+      position: relative;
+      flex: 1;
+      min-height: 330px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #d6e5f4;
+      background:
+        linear-gradient(90deg, rgba(61, 124, 202, 0.08) 1px, transparent 1px) 0 0/40px 40px,
+        linear-gradient(rgba(61, 124, 202, 0.08) 1px, transparent 1px) 0 0/40px 40px,
+        linear-gradient(140deg, #f9fcff, #edf5ff 60%, #edf7f2);
+    }
+
+    .road {
+      position: absolute;
+      background: rgba(173, 199, 223, 0.65);
+      border-radius: 999px;
+    }
+
+    .road.a { width: 80%; height: 10px; top: 22%; left: 8%; transform: rotate(5deg); }
+    .road.b { width: 60%; height: 10px; top: 50%; left: 20%; transform: rotate(-18deg); }
+    .road.c { width: 72%; height: 10px; top: 70%; left: 12%; transform: rotate(9deg); }
+
+    .pin {
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      border: 2px solid #fff;
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      box-shadow: 0 6px 14px rgba(16, 35, 59, 0.2);
+      cursor: pointer;
+      outline: none;
+    }
+
+    .pin > span {
+      transform: rotate(45deg);
+      display: grid;
+      place-items: center;
+      width: 100%;
+      height: 100%;
+      color: #fff;
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
+
+    .pin[data-rating="high"] { background: #0f9d58; }
+    .pin[data-rating="medium"] { background: #f29900; }
+    .pin[data-rating="low"] { background: #e53935; }
+
+    .tooltip {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #cbddf1;
+      border-radius: 10px;
+      padding: 0.55rem 0.65rem;
+      font-size: 0.87rem;
+      color: var(--text-main);
+      box-shadow: 0 10px 22px rgba(16, 35, 59, 0.15);
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 140ms ease, transform 140ms ease;
+      max-width: 200px;
+      z-index: 2;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1rem;
+      margin-top: 0.95rem;
+      color: var(--text-muted);
+      font-size: 0.93rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 0.4rem;
+    }
+
+    .dot.good { background: #0f9d58; }
+    .dot.mid { background: #f29900; }
+    .dot.bad { background: #e53935; }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(16, 35, 59, 0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 20;
+    }
+
+    .modal-backdrop.active { display: flex; }
+
+    .modal {
+      width: min(520px, 100%);
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #d6e3f1;
+      box-shadow: 0 24px 52px rgba(16, 35, 59, 0.28);
+      padding: 1rem;
+    }
+
+    .modal h3 { margin: 0 0 0.6rem; }
+    .modal p { color: var(--text-muted); margin: 0 0 0.8rem; }
+
+    .modal .close {
+      width: auto;
+      background: transparent;
+      color: #23486d;
+      border: 1px solid #bcd5ec;
+      margin-left: auto;
+      padding-inline: 1rem;
+    }
+
+    .modal-actions { display: flex; gap: 0.6rem; justify-content: flex-end; margin-top: 0.8rem; }
+
+    button:focus-visible,
+    input:focus-visible,
+    .pin:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 960px) {
+      .app-shell { grid-template-columns: 1fr; }
+      .preview-panel { min-height: 380px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app-shell" aria-label="Smart City login interface">
+    <section class="panel login-panel" aria-labelledby="loginHeading">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">SC</div>
+        <div>
+          <h1 id="loginHeading">SmartCity Connect</h1>
+          <p class="subtitle">Urban innovation and public feedback platform for better city services.</p>
+        </div>
+      </div>
+
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="identityInput">Phone or Email</label>
+          <input id="identityInput" name="identity" type="text" autocomplete="username" placeholder="+994 50 123 45 67 or name@email.com" required aria-describedby="identityHelp" />
+        </div>
+
+        <div class="field">
+          <label for="otpInput">OTP or Password</label>
+          <input id="otpInput" name="otp" type="text" autocomplete="one-time-code" placeholder="Enter OTP or password" required />
+        </div>
+
+        <div class="button-grid">
+          <button class="btn-tertiary" id="sendOtpBtn" type="button" aria-label="Generate a demo one-time password">Send OTP (Demo)</button>
+          <button class="btn-primary" id="loginBtn" type="submit">Login</button>
+          <button class="btn-secondary" id="guestBtn" type="button">Continue as Guest</button>
+          <button class="btn-secondary" id="asanBtn" type="button">Login with ASAN (Demo)</button>
+          <button class="btn-secondary" id="govBtn" type="button">Login with Government ID / FIN (Demo)</button>
+        </div>
+        <div class="status" id="statusMessage" role="status" aria-live="polite"></div>
+      </form>
+      <p id="identityHelp" class="microcopy">Demo environment only. No real credentials are collected or stored.</p>
+    </section>
+
+    <section class="panel preview-panel" aria-labelledby="mapHeading">
+      <div class="preview-header">
+        <h2 id="mapHeading">Live Smart City Feedback Preview</h2>
+        <p>Explore citizen reports by district quality ratings. Hover/focus pins for quick info and click for details.</p>
+      </div>
+      <div class="city-map" id="cityMap" aria-label="Interactive city service quality map">
+        <div class="road a" aria-hidden="true"></div>
+        <div class="road b" aria-hidden="true"></div>
+        <div class="road c" aria-hidden="true"></div>
+        <button class="pin" data-rating="high" data-title="Nizami District" data-score="4.8/5" data-issue="Street lighting upgrade completed" style="top:24%;left:30%;" aria-label="Nizami District rating 4.8 out of 5"><span>4.8</span></button>
+        <button class="pin" data-rating="medium" data-title="Yasamal District" data-score="3.4/5" data-issue="Road repair request in progress" style="top:56%;left:58%;" aria-label="Yasamal District rating 3.4 out of 5"><span>3.4</span></button>
+        <button class="pin" data-rating="low" data-title="Khatai District" data-score="2.2/5" data-issue="Waste collection delay reported" style="top:66%;left:26%;" aria-label="Khatai District rating 2.2 out of 5"><span>2.2</span></button>
+        <div class="tooltip" id="mapTooltip" role="tooltip"></div>
+      </div>
+
+      <div class="legend" aria-label="Rating legend">
+        <span><span class="dot good"></span>High rating (4.5+)</span>
+        <span><span class="dot mid"></span>Medium rating (3.0–4.4)</span>
+        <span><span class="dot bad"></span>Low rating (&lt;3.0)</span>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="detailsModalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="detailsTitle">
+      <button class="close" type="button" data-close="detailsModalBackdrop">Close</button>
+      <h3 id="detailsTitle">District Details</h3>
+      <p id="detailsBody"></p>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="asanModalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="asanTitle">
+      <button class="close" type="button" data-close="asanModalBackdrop">Close</button>
+      <h3 id="asanTitle">ASAN Login (Demo)</h3>
+      <p>Simulated secure ASAN gateway. Click continue to complete demo login.</p>
+      <div class="modal-actions">
+        <button class="btn-primary" id="asanContinue" type="button">Continue with ASAN</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="govModalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="govTitle">
+      <button class="close" type="button" data-close="govModalBackdrop">Close</button>
+      <h3 id="govTitle">Government ID / FIN (Demo)</h3>
+      <p>Please enter your details for a simulated government login.</p>
+      <form id="govForm" novalidate>
+        <div class="field">
+          <label for="finInput">FIN Code</label>
+          <input id="finInput" type="text" placeholder="e.g., 7A1BC2D" required />
+        </div>
+        <div class="field">
+          <label for="nameInput">Full Name</label>
+          <input id="nameInput" type="text" placeholder="Your full name" required />
+        </div>
+        <div class="modal-actions">
+          <button class="btn-primary" type="submit">Verify & Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const statusEl = document.getElementById('statusMessage');
+    const otpInput = document.getElementById('otpInput');
+    const identityInput = document.getElementById('identityInput');
+    const sendOtpBtn = document.getElementById('sendOtpBtn');
+    const loginForm = document.getElementById('loginForm');
+
+    let generatedOtp = null;
+
+    function setStatus(message, type = 'info') {
+      statusEl.textContent = message;
+      statusEl.className = `status ${type}`;
+    }
+
+    function openModal(id) {
+      const el = document.getElementById(id);
+      el.classList.add('active');
+      el.setAttribute('aria-hidden', 'false');
+      const focusTarget = el.querySelector('button, input');
+      if (focusTarget) focusTarget.focus();
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      el.classList.remove('active');
+      el.setAttribute('aria-hidden', 'true');
+    }
+
+    sendOtpBtn.addEventListener('click', () => {
+      if (!identityInput.value.trim()) {
+        setStatus('Please enter phone/email before generating OTP.', 'warn');
+        identityInput.focus();
+        return;
+      }
+      generatedOtp = String(Math.floor(100000 + Math.random() * 900000));
+      setStatus(`Demo OTP generated: ${generatedOtp} (for hackathon preview only).`, 'info');
+    });
+
+    loginForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const identity = identityInput.value.trim();
+      const entered = otpInput.value.trim();
+
+      if (!identity || !entered) {
+        setStatus('Please fill in both login fields.', 'warn');
+        return;
+      }
+
+      if (generatedOtp && entered === generatedOtp) {
+        setStatus(`Welcome! Login successful for ${identity}.`, 'success');
+      } else if (!generatedOtp && entered.length >= 4) {
+        setStatus(`Welcome! Password login successful for ${identity}.`, 'success');
+      } else {
+        setStatus('Login failed. Use the generated OTP or a valid password.', 'warn');
+      }
+    });
+
+    document.getElementById('guestBtn').addEventListener('click', () => {
+      setStatus('Guest mode activated. Limited view enabled.', 'success');
+    });
+
+    document.getElementById('asanBtn').addEventListener('click', () => openModal('asanModalBackdrop'));
+    document.getElementById('asanContinue').addEventListener('click', () => {
+      closeModal('asanModalBackdrop');
+      setStatus('ASAN demo authentication successful. Redirecting to dashboard...', 'success');
+    });
+
+    document.getElementById('govBtn').addEventListener('click', () => openModal('govModalBackdrop'));
+    document.getElementById('govForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const fin = document.getElementById('finInput').value.trim();
+      const name = document.getElementById('nameInput').value.trim();
+      if (!fin || !name) {
+        setStatus('Please complete FIN and full name for government demo login.', 'warn');
+        return;
+      }
+      closeModal('govModalBackdrop');
+      setStatus(`Government demo login successful. Welcome, ${name}.`, 'success');
+    });
+
+    document.querySelectorAll('[data-close]').forEach((btn) => {
+      btn.addEventListener('click', () => closeModal(btn.getAttribute('data-close')));
+    });
+
+    document.querySelectorAll('.modal-backdrop').forEach((backdrop) => {
+      backdrop.addEventListener('click', (event) => {
+        if (event.target === backdrop) closeModal(backdrop.id);
+      });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        document.querySelectorAll('.modal-backdrop.active').forEach((modal) => closeModal(modal.id));
+      }
+    });
+
+    const tooltip = document.getElementById('mapTooltip');
+    const detailsBody = document.getElementById('detailsBody');
+
+    function showTooltip(pin) {
+      const title = pin.dataset.title;
+      const score = pin.dataset.score;
+      tooltip.innerHTML = `<strong>${title}</strong><br/>Rating: ${score}`;
+      const pinRect = pin.getBoundingClientRect();
+      const mapRect = document.getElementById('cityMap').getBoundingClientRect();
+      tooltip.style.left = `${pinRect.left - mapRect.left + 28}px`;
+      tooltip.style.top = `${pinRect.top - mapRect.top - 6}px`;
+      tooltip.style.opacity = '1';
+      tooltip.style.transform = 'translateY(0)';
+    }
+
+    function hideTooltip() {
+      tooltip.style.opacity = '0';
+      tooltip.style.transform = 'translateY(6px)';
+    }
+
+    document.querySelectorAll('.pin').forEach((pin) => {
+      pin.addEventListener('mouseenter', () => showTooltip(pin));
+      pin.addEventListener('focus', () => showTooltip(pin));
+      pin.addEventListener('mouseleave', hideTooltip);
+      pin.addEventListener('blur', hideTooltip);
+      pin.addEventListener('click', () => {
+        detailsBody.textContent = `${pin.dataset.title}: ${pin.dataset.issue}. Current citizen rating is ${pin.dataset.score}.`;
+        openModal('detailsModalBackdrop');
+      });
+    });
+  </script>
+</body>
+</html>
