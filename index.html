@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="az">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SmartCity Connect | Secure Login</title>
+  <title>SmartCity Connect | Təhlükəsiz Giriş</title>
   <style>
     :root {
       --bg-start: #f3f8ff;
@@ -336,97 +336,97 @@
   </style>
 </head>
 <body>
-  <main class="app-shell" aria-label="Smart City login interface">
+  <main class="app-shell" aria-label="Smart City giriş interfeysi">
     <section class="panel login-panel" aria-labelledby="loginHeading">
       <div class="brand">
         <div class="logo" aria-hidden="true">SC</div>
         <div>
           <h1 id="loginHeading">SmartCity Connect</h1>
-          <p class="subtitle">Urban innovation and public feedback platform for better city services.</p>
+          <p class="subtitle">Daha yaxşı şəhər xidmətləri üçün şəhər innovasiyası və ictimai rəy platforması.</p>
         </div>
       </div>
 
       <form id="loginForm" novalidate>
         <div class="field">
-          <label for="identityInput">Phone or Email</label>
-          <input id="identityInput" name="identity" type="text" autocomplete="username" placeholder="+994 50 123 45 67 or name@email.com" required aria-describedby="identityHelp" />
+          <label for="identityInput">Telefon və ya E-poçt</label>
+          <input id="identityInput" name="identity" type="text" autocomplete="username" placeholder="+994 50 123 45 67 və ya ad@email.com" required aria-describedby="identityHelp" />
         </div>
 
         <div class="field">
-          <label for="otpInput">OTP or Password</label>
-          <input id="otpInput" name="otp" type="text" autocomplete="one-time-code" placeholder="Enter OTP or password" required />
+          <label for="otpInput">OTP və ya Şifrə</label>
+          <input id="otpInput" name="otp" type="text" autocomplete="one-time-code" placeholder="OTP və ya şifrəni daxil edin" required />
         </div>
 
         <div class="button-grid">
-          <button class="btn-tertiary" id="sendOtpBtn" type="button" aria-label="Generate a demo one-time password">Send OTP (Demo)</button>
-          <button class="btn-primary" id="loginBtn" type="submit">Login</button>
-          <button class="btn-secondary" id="guestBtn" type="button">Continue as Guest</button>
-          <button class="btn-secondary" id="asanBtn" type="button">Login with ASAN (Demo)</button>
-          <button class="btn-secondary" id="govBtn" type="button">Login with Government ID / FIN (Demo)</button>
+          <button class="btn-tertiary" id="sendOtpBtn" type="button" aria-label="Demo birdəfəlik şifrə yarat">OTP Göndər (Demo)</button>
+          <button class="btn-primary" id="loginBtn" type="submit">Daxil ol</button>
+          <button class="btn-secondary" id="guestBtn" type="button">Qonaq kimi davam et</button>
+          <button class="btn-secondary" id="asanBtn" type="button">ASAN ilə daxil ol (Demo)</button>
+          <button class="btn-secondary" id="govBtn" type="button">Hökumət ID / FİN ilə daxil ol (Demo)</button>
         </div>
         <div class="status" id="statusMessage" role="status" aria-live="polite"></div>
       </form>
-      <p id="identityHelp" class="microcopy">Demo environment only. No real credentials are collected or stored.</p>
+      <p id="identityHelp" class="microcopy">Yalnız demo mühiti. Heç bir real məlumat toplanmır və ya saxlanılmır.</p>
     </section>
 
     <section class="panel preview-panel" aria-labelledby="mapHeading">
       <div class="preview-header">
-        <h2 id="mapHeading">Live Smart City Feedback Preview</h2>
-        <p>Explore citizen reports by district quality ratings. Hover/focus pins for quick info and click for details.</p>
+        <h2 id="mapHeading">Canlı Smart City Rəy İcmalı</h2>
+        <p>Rayonların keyfiyyət reytinqlərinə görə vətəndaş hesabatlarını kəşf edin. Qısa məlumat üçün pinlərin üzərinə gəlin və detallar üçün klikləyin.</p>
       </div>
-      <div class="city-map" id="cityMap" aria-label="Interactive city service quality map">
+      <div class="city-map" id="cityMap" aria-label="İnteraktiv şəhər xidməti keyfiyyət xəritəsi">
         <div class="road a" aria-hidden="true"></div>
         <div class="road b" aria-hidden="true"></div>
         <div class="road c" aria-hidden="true"></div>
-        <button class="pin" data-rating="high" data-title="Nizami District" data-score="4.8/5" data-issue="Street lighting upgrade completed" style="top:24%;left:30%;" aria-label="Nizami District rating 4.8 out of 5"><span>4.8</span></button>
-        <button class="pin" data-rating="medium" data-title="Yasamal District" data-score="3.4/5" data-issue="Road repair request in progress" style="top:56%;left:58%;" aria-label="Yasamal District rating 3.4 out of 5"><span>3.4</span></button>
-        <button class="pin" data-rating="low" data-title="Khatai District" data-score="2.2/5" data-issue="Waste collection delay reported" style="top:66%;left:26%;" aria-label="Khatai District rating 2.2 out of 5"><span>2.2</span></button>
+        <button class="pin" data-rating="high" data-title="Nizami Rayonu" data-score="4.8/5" data-issue="Küçə işıqlandırmasının yenilənməsi tamamlandı" style="top:24%;left:30%;" aria-label="Nizami rayonu reytinqi 5-dən 4.8"><span>4.8</span></button>
+        <button class="pin" data-rating="medium" data-title="Yasamal Rayonu" data-score="3.4/5" data-issue="Yol təmiri tələbi icra olunur" style="top:56%;left:58%;" aria-label="Yasamal rayonu reytinqi 5-dən 3.4"><span>3.4</span></button>
+        <button class="pin" data-rating="low" data-title="Xətai Rayonu" data-score="2.2/5" data-issue="Tullantıların toplanmasında gecikmə qeydə alınıb" style="top:66%;left:26%;" aria-label="Xətai rayonu reytinqi 5-dən 2.2"><span>2.2</span></button>
         <div class="tooltip" id="mapTooltip" role="tooltip"></div>
       </div>
 
-      <div class="legend" aria-label="Rating legend">
-        <span><span class="dot good"></span>High rating (4.5+)</span>
-        <span><span class="dot mid"></span>Medium rating (3.0–4.4)</span>
-        <span><span class="dot bad"></span>Low rating (&lt;3.0)</span>
+      <div class="legend" aria-label="Reytinq izahı">
+        <span><span class="dot good"></span>Yüksək reytinq (4.5+)</span>
+        <span><span class="dot mid"></span>Orta reytinq (3.0–4.4)</span>
+        <span><span class="dot bad"></span>Aşağı reytinq (&lt;3.0)</span>
       </div>
     </section>
   </main>
 
   <div class="modal-backdrop" id="detailsModalBackdrop" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="detailsTitle">
-      <button class="close" type="button" data-close="detailsModalBackdrop">Close</button>
-      <h3 id="detailsTitle">District Details</h3>
+      <button class="close" type="button" data-close="detailsModalBackdrop">Bağla</button>
+      <h3 id="detailsTitle">Rayon Detalları</h3>
       <p id="detailsBody"></p>
     </div>
   </div>
 
   <div class="modal-backdrop" id="asanModalBackdrop" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="asanTitle">
-      <button class="close" type="button" data-close="asanModalBackdrop">Close</button>
-      <h3 id="asanTitle">ASAN Login (Demo)</h3>
-      <p>Simulated secure ASAN gateway. Click continue to complete demo login.</p>
+      <button class="close" type="button" data-close="asanModalBackdrop">Bağla</button>
+      <h3 id="asanTitle">ASAN Giriş (Demo)</h3>
+      <p>Simulyasiya edilmiş təhlükəsiz ASAN şlüzü. Demo girişini tamamlamaq üçün davam et düyməsini klikləyin.</p>
       <div class="modal-actions">
-        <button class="btn-primary" id="asanContinue" type="button">Continue with ASAN</button>
+        <button class="btn-primary" id="asanContinue" type="button">ASAN ilə davam et</button>
       </div>
     </div>
   </div>
 
   <div class="modal-backdrop" id="govModalBackdrop" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="govTitle">
-      <button class="close" type="button" data-close="govModalBackdrop">Close</button>
-      <h3 id="govTitle">Government ID / FIN (Demo)</h3>
-      <p>Please enter your details for a simulated government login.</p>
+      <button class="close" type="button" data-close="govModalBackdrop">Bağla</button>
+      <h3 id="govTitle">Hökumət ID / FİN (Demo)</h3>
+      <p>Simulyasiya edilmiş hökumət girişi üçün məlumatlarınızı daxil edin.</p>
       <form id="govForm" novalidate>
         <div class="field">
-          <label for="finInput">FIN Code</label>
-          <input id="finInput" type="text" placeholder="e.g., 7A1BC2D" required />
+          <label for="finInput">FİN Kod</label>
+          <input id="finInput" type="text" placeholder="məs., 7A1BC2D" required />
         </div>
         <div class="field">
-          <label for="nameInput">Full Name</label>
-          <input id="nameInput" type="text" placeholder="Your full name" required />
+          <label for="nameInput">Ad və Soyad</label>
+          <input id="nameInput" type="text" placeholder="Tam adınız" required />
         </div>
         <div class="modal-actions">
-          <button class="btn-primary" type="submit">Verify & Login</button>
+          <button class="btn-primary" type="submit">Təsdiqlə və Daxil ol</button>
         </div>
       </form>
     </div>
@@ -462,12 +462,12 @@
 
     sendOtpBtn.addEventListener('click', () => {
       if (!identityInput.value.trim()) {
-        setStatus('Please enter phone/email before generating OTP.', 'warn');
+        setStatus('OTP yaratmazdan əvvəl telefon/e-poçt daxil edin.', 'warn');
         identityInput.focus();
         return;
       }
       generatedOtp = String(Math.floor(100000 + Math.random() * 900000));
-      setStatus(`Demo OTP generated: ${generatedOtp} (for hackathon preview only).`, 'info');
+      setStatus(`Demo OTP yaradıldı: ${generatedOtp} (yalnız sınaq baxışı üçün).`, 'info');
     });
 
     loginForm.addEventListener('submit', (event) => {
@@ -476,27 +476,27 @@
       const entered = otpInput.value.trim();
 
       if (!identity || !entered) {
-        setStatus('Please fill in both login fields.', 'warn');
+        setStatus('Zəhmət olmasa hər iki giriş xanasını doldurun.', 'warn');
         return;
       }
 
       if (generatedOtp && entered === generatedOtp) {
-        setStatus(`Welcome! Login successful for ${identity}.`, 'success');
+        setStatus(`Xoş gəlmisiniz! ${identity} üçün giriş uğurludur.`, 'success');
       } else if (!generatedOtp && entered.length >= 4) {
-        setStatus(`Welcome! Password login successful for ${identity}.`, 'success');
+        setStatus(`Xoş gəlmisiniz! ${identity} üçün şifrə ilə giriş uğurludur.`, 'success');
       } else {
-        setStatus('Login failed. Use the generated OTP or a valid password.', 'warn');
+        setStatus('Giriş uğursuz oldu. Yaradılmış OTP və ya etibarlı şifrədən istifadə edin.', 'warn');
       }
     });
 
     document.getElementById('guestBtn').addEventListener('click', () => {
-      setStatus('Guest mode activated. Limited view enabled.', 'success');
+      setStatus('Qonaq rejimi aktivləşdirildi. Məhdud baxış aktivdir.', 'success');
     });
 
     document.getElementById('asanBtn').addEventListener('click', () => openModal('asanModalBackdrop'));
     document.getElementById('asanContinue').addEventListener('click', () => {
       closeModal('asanModalBackdrop');
-      setStatus('ASAN demo authentication successful. Redirecting to dashboard...', 'success');
+      setStatus('ASAN demo identifikasiyası uğurlu oldu. İdarəetmə panelinə yönləndirilir...', 'success');
     });
 
     document.getElementById('govBtn').addEventListener('click', () => openModal('govModalBackdrop'));
@@ -505,11 +505,11 @@
       const fin = document.getElementById('finInput').value.trim();
       const name = document.getElementById('nameInput').value.trim();
       if (!fin || !name) {
-        setStatus('Please complete FIN and full name for government demo login.', 'warn');
+        setStatus('Hökumət demo girişi üçün FİN və tam adınızı daxil edin.', 'warn');
         return;
       }
       closeModal('govModalBackdrop');
-      setStatus(`Government demo login successful. Welcome, ${name}.`, 'success');
+      setStatus(`Hökumət demo girişi uğurlu oldu. Xoş gəlmisiniz, ${name}.`, 'success');
     });
 
     document.querySelectorAll('[data-close]').forEach((btn) => {
@@ -534,7 +534,7 @@
     function showTooltip(pin) {
       const title = pin.dataset.title;
       const score = pin.dataset.score;
-      tooltip.innerHTML = `<strong>${title}</strong><br/>Rating: ${score}`;
+      tooltip.innerHTML = `<strong>${title}</strong><br/>Reytinq: ${score}`;
       const pinRect = pin.getBoundingClientRect();
       const mapRect = document.getElementById('cityMap').getBoundingClientRect();
       tooltip.style.left = `${pinRect.left - mapRect.left + 28}px`;
@@ -554,7 +554,7 @@
       pin.addEventListener('mouseleave', hideTooltip);
       pin.addEventListener('blur', hideTooltip);
       pin.addEventListener('click', () => {
-        detailsBody.textContent = `${pin.dataset.title}: ${pin.dataset.issue}. Current citizen rating is ${pin.dataset.score}.`;
+        detailsBody.textContent = `${pin.dataset.title}: ${pin.dataset.issue}. Hazırkı vətəndaş reytinqi ${pin.dataset.score}-dir.`;
         openModal('detailsModalBackdrop');
       });
     });
